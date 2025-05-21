@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swasthyasetu - Fitness Journey</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Swasthyasetu</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#dashboard-section">Dashboard</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <button class="login-btn" id="login-btn">Login</button>
+                <button class="register-btn" id="register-btn">Register</button>
+                <button class="profile-btn hidden" id="profile-btn">My Profile</button>
+                <button class="logout-btn hidden" id="logout-btn">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Swasthyasetu</h1>
+            <p>Stay motivated, track progress, and achieve your fitness goals with our comprehensive fitness tracking platform</p>
+        </div>
+        <div class="hero-image">
+            <img src="img//pexels-maksgelatin-4775196.jpg" alt="Fitness tracking">
+            
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Our Features</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <i class="fas fa-heart-pulse"></i>
+                <h3>Health Metrics</h3>
+                <p>Monitor your heart rate, blood pressure, and more</p>
+                <a href="#dashboard" class="feature-link" id="health-metrics-link">View</a>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h3>AI Health Predictor</h3>
+                <p>Predict potential health issues using advanced AI algorithms</p>
+                <a href="ai-health-predictor.html" class="feature-link">View</a>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-weight-scale"></i>
+                <h3>Weight Management</h3>
+                <p>Track your weight and body measurements over time</p>
+                <button class="bmi-btn" id="bmi-chart-btn">View</button>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Diet Plans</h3>
+                <p>Get personalized diet plans based on your goals</p>
+                <button class="bmi-btn" id="diet-plan-btn">View</button>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-dumbbell"></i>
+                <h3>Exercise Plans</h3>
+                <p>Follow customized exercise routines for your goals</p>
+                <button class="bmi-btn" id="exercise-plan-btn">View</button>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Progress Tracking</h3>
+                <p>Visualize your progress with detailed charts</p>
+                <button class="bmi-btn" id="progress-tracking-btn">View</button>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Goal Setting</h3>
+                <p>Set and track your fitness goals</p>
+                <a href="#dashboard" class="feature-link" id="goal-setting-link">View</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="dashboard hidden">
+        <h2>Your Fitness Dashboard</h2>
+        <div class="dashboard-tabs">
+            <button class="tab-btn active" data-tab="stats">Current Stats</button>
+            <button class="tab-btn" data-tab="progress">Progress</button>
+            <button class="tab-btn" data-tab="diet">Diet Plan</button>
+            <button class="tab-btn" data-tab="exercise">Exercise Plan</button>
+            <button class="tab-btn" data-tab="input">Input Progress</button>
+        </div>
+        
+        <div class="dashboard-content">
+            <!-- Stats Tab -->
+            <div class="tab-content active" id="stats-tab">
+                <div class="stats-container">
+                    <div class="user-info-card">
+                        <h3>Profile Information</h3>
+                        <div id="user-info"></div>
+                    </div>
+                    <div class="stats-metrics">
+                        <div class="stat-card">
+                            <h3>Daily Steps</h3>
+                            <p id="steps-count">0</p>
+                            <div class="progress-bar">
+                                <div class="progress" id="steps-progress" style="width: 0%;"></div>
+                            </div>
+                            <p class="goal">Goal: <span id="steps-goal">10,000</span></p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Calories Burned</h3>
+                            <p id="calories-count">0</p>
+                            <div class="progress-bar">
+                                <div class="progress" id="calories-progress" style="width: 0%;"></div>
+                            </div>
+                            <p class="goal">Goal: <span id="calories-goal">500</span></p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Minutes</h3>
+                            <p id="active-count">0</p>
+                            <div class="progress-bar">
+                                <div class="progress" id="active-progress" style="width: 0%;"></div>
+                            </div>
+                            <p class="goal">Goal: <span id="active-goal">60</span></p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Heart Rate</h3>
+                            <p id="heart-rate">0 bpm</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Blood Pressure</h3>
+                            <p id="blood-pressure">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Tab -->
+            <div class="tab-content" id="progress-tab">
+                <div class="chart-container">
+                    <h3>Weekly Progress</h3>
+                    <canvas id="progress-chart"></canvas>
+                </div>
+                <div class="progress-history">
+                    <h3>Progress History</h3>
+                    <div id="progress-list"></div>
+                </div>
+            </div>
+            
+            <!-- Diet Plan Tab -->
+            <div class="tab-content" id="diet-tab">
+                <div class="diet-plan-container">
+                    <h3>Your Personalized Diet Plan</h3>
+                    <div id="diet-plan"></div>
+                </div>
+            </div>
+            
+            <!-- Exercise Plan Tab -->
+            <div class="tab-content" id="exercise-tab">
+                <div class="exercise-plan-container">
+                    <h3>Your Personalized Exercise Plan</h3>
+                    <div id="exercise-plan"></div>
+                </div>
+            </div>
+            
+            <!-- Input Progress Tab -->
+            <div class="tab-content" id="input-tab">
+                <div class="input-progress-container">
+                    <h3>Record Your Progress</h3>
+                    <form id="progress-form">
+                        <div class="form-group">
+                            <label for="progress-date">Date</label>
+                            <input type="date" id="progress-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="progress-weight">Weight (kg)</label>
+                            <input type="number" id="progress-weight" min="20" max="300" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="progress-height">Height (ft)</label>
+                            <input type="number" id="progress-height" min="1" max="8" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="progress-steps">Steps</label>
+                            <input type="number" id="progress-steps" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="progress-heart-rate">Heart Rate (bpm)</label>
+                            <input type="number" id="progress-heart-rate" min="40" max="220" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="progress-blood-pressure">Blood Pressure (mmHg)</label>
+                            <input type="text" id="progress-blood-pressure" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="progress-calories">Calories Intake</label>
+                            <input type="number" id="progress-calories" min="0" required>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="progress-diet-followed">
+                            <label for="progress-diet-followed">Diet Plan Followed</label>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="progress-exercise-done">
+                            <label for="progress-exercise-done">Exercise Completed</label>
+                        </div>
+                        <button type="submit" class="submit-btn">Save Progress</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard-section" class="dashboard-section">
+        <h2>Dashboard Overview</h2>
+        <div class="dashboard-overview">
+            <div class="dashboard-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Performance Analytics</h3>
+                <p>Track your fitness progress with detailed analytics and insights</p>
+                <a href="#dashboard" class="dashboard-link-btn">View Analytics</a>
+            </div>
+            <div class="dashboard-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Workout Schedule</h3>
+                <p>Plan and manage your workout routines with our scheduling tool</p>
+                <a href="#dashboard" class="dashboard-link-btn">View Schedule</a>
+            </div>
+            <div class="dashboard-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Achievements</h3>
+                <p>Celebrate your fitness milestones and achievements</p>
+                <a href="#dashboard" class="dashboard-link-btn">View Achievements</a>
+            </div>
+            <div class="dashboard-card">
+                <i class="fas fa-users"></i>
+                <h3>Community</h3>
+                <p>Connect with other fitness enthusiasts and share your journey</p>
+                <a href="#dashboard" class="dashboard-link-btn">Join Community</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Swasthyasetu</h2>
+        <p>Swasthyasetu is dedicated to helping you achieve your fitness goals through simple tracking and visualization of your progress. Our easy-to-use platform allows you to monitor your activities, set goals, follow personalized diet and exercise plans, and stay motivated throughout your fitness journey.</p>
+        
+        <div class="team-section">
+            <h3>Our Development Team</h3>
+            <div class="team-members">
+                <div class="team-member">
+                    <h4>Kumar Gaurav</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 9905043055</li>
+                        <li><i class="fas fa-envelope"></i> kgraja125@gmail.com</li>
+                        <li><i class="fab fa-instagram"></i> @iamgaurravv</li>
+                    </ul>
+                </div>
+                <div class="team-member">
+                    <h4>Deepanjali Sharma</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 7250647615</li>
+                        <li><i class="fas fa-envelope"></i> deepanjalis469@gmail.com</li>
+                        <li><i class="fab fa-instagram"></i> @deepanjalis469</li>
+                    </ul>
+                </div>
+                <div class="team-member">
+                    <h4>Chahat Tyagi</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 9758085660</li>
+                        <li><i class="fas fa-envelope"></i> tyagichahat1232005@gmail.com</li>
+                        <li><i class="fab fa-instagram"></i> chahat_tyagi_</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="register-modal">&times;</span>
+            <h2>Create Your Profile</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="height">Height (ft)</label>
+                    <input type="number" id="height" min="1" max="8" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" min="20" max="300" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="weekly-steps">Weekly Steps</label>
+                    <input type="number" id="weekly-steps" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="heart-rate">Heart Rate (bpm)</label>
+                    <input type="number" id="heart-rate-input" min="40" max="220" required>
+                </div>
+                <div class="form-group">
+                    <label for="blood-pressure-input">Blood Pressure (mmHg)</label>
+                    <input type="text" id="blood-pressure-input" placeholder="e.g., 120/80" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="vegetarian">
+                    <label for="vegetarian">Vegetarian</label>
+                </div>
+                <div class="form-group">
+                    <label for="fitness-goal">Fitness Goal</label>
+                    <select id="fitness-goal" required>
+                        <option value="">Select</option>
+                        <option value="Gain Weight">Gain Weight</option>
+                        <option value="Moderate Weight">Maintain Weight</option>
+                        <option value="Lose Weight">Lose Weight</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Create Profile</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="login-modal">&times;</span>
+            <h2>Login to Your Account</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Update Profile Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="profile-modal">&times;</span>
+            <h2>Update Your Profile</h2>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="update-name">Name</label>
+                    <input type="text" id="update-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-age">Age</label>
+                    <input type="number" id="update-age" min="1" max="120" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-gender">Gender</label>
+                    <select id="update-gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="update-password">New Password</label>
+                    <input type="password" id="update-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-height">Height (ft)</label>
+                    <input type="number" id="update-height" min="1" max="8" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-weight">Weight (kg)</label>
+                    <input type="number" id="update-weight" min="20" max="300" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="update-fitness-goal">Fitness Goal</label>
+                    <select id="update-fitness-goal" required>
+                        <option value="">Select</option>
+                        <option value="Gain Weight">Gain Weight</option>
+                        <option value="Moderate Weight">Maintain Weight</option>
+                        <option value="Lose Weight">Lose Weight</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Update Profile</button>
+                    <button type="button" class="delete-btn" id="delete-profile-btn">Delete Profile</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo">
+            <h1>Swasthyasetu</h1>
+        </div>
+        <p>&copy; 2025 Swasthyasetu. All rights reserved.</p>
+    </footer>
+
+    <div class="bottom-section">
+        <div class="bottom-container">
+            <div class="bottom-category">
+                <h3>Fitness</h3>
+                <ul>
+                    <li><a href="#">Weight Loss</a></li>
+                    <li><a href="#">Muscle Gain</a></li>
+                    <li><a href="#">Cardio</a></li>
+                 
+                </ul>
+            </div>
+            <div class="bottom-category">
+                <h3>Nutrition</h3>
+                <ul>
+                    <li><a href="#">Meal Plans</a></li>
+                    <li><a href="#">Diet Tips</a></li>
+                    <li><a href="#">Supplements</a></li>
+                </ul>
+            </div>
+            <div class="bottom-category">
+                <h3>Health</h3>
+                <ul>
+                    <li><a href="#">Heart Health</a></li>
+                    <li><a href="#">Mental Wellness</a></li>
+                    <li><a href="#">Stress Manangement</a></li>
+                </ul>
+            </div>
+            <div class="bottom-category">
+                <h3>Community</h3>
+                <ul>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Forums</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-links">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="legal-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About Us</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- BMI Chart Modal -->
+    <div id="bmi-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" data-modal="bmi-modal">&times;</span>
+            <h2>BMI Chart & Ideal Weight Guide</h2>
+            <div class="bmi-container">
+                <div class="bmi-explanation">
+                    <h3>What is BMI?</h3>
+                    <p>Body Mass Index (BMI) is a value derived from a person's weight and height. It provides a simple numeric measure of a person's thickness or thinness, allowing health professionals to discuss weight problems more objectively with their patients.</p>
+                    
+                    <h3>BMI Categories:</h3>
+                    <ul>
+                        <li><strong>Underweight:</strong> BMI less than 18.5</li>
+                        <li><strong>Normal weight:</strong> BMI 18.5–24.9</li>
+                        <li><strong>Overweight:</strong> BMI 25–29.9</li>
+                        <li><strong>Obesity:</strong> BMI 30 or greater</li>
+                    </ul>
+                </div>
+                
+                <div class="bmi-chart">
+                    <h3>BMI Chart</h3>
+                    <table class="bmi-table">
+                        <thead>
+                            <tr>
+                                <th>Height</th>
+                                <th>Underweight<br>&lt;18.5</th>
+                                <th>Normal<br>18.5-24.9</th>
+                                <th>Overweight<br>25-29.9</th>
+                                <th>Obese<br>≥30</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>4'10" (147 cm)</td>
+                                <td>&lt;89 lbs</td>
+                                <td>89-119 lbs</td>
+                                <td>120-143 lbs</td>
+                                <td>&gt;143 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>5'0" (152 cm)</td>
+                                <td>&lt;95 lbs</td>
+                                <td>95-127 lbs</td>
+                                <td>128-153 lbs</td>
+                                <td>&gt;153 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>5'2" (157 cm)</td>
+                                <td>&lt;101 lbs</td>
+                                <td>101-136 lbs</td>
+                                <td>137-163 lbs</td>
+                                <td>&gt;163 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>5'4" (163 cm)</td>
+                                <td>&lt;108 lbs</td>
+                                <td>108-145 lbs</td>
+                                <td>146-174 lbs</td>
+                                <td>&gt;174 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>5'6" (168 cm)</td>
+                                <td>&lt;115 lbs</td>
+                                <td>115-154 lbs</td>
+                                <td>155-186 lbs</td>
+                                <td>&gt;186 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>5'8" (173 cm)</td>
+                                <td>&lt;122 lbs</td>
+                                <td>122-164 lbs</td>
+                                <td>165-198 lbs</td>
+                                <td>&gt;198 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>5'10" (178 cm)</td>
+                                <td>&lt;129 lbs</td>
+                                <td>129-174 lbs</td>
+                                <td>175-209 lbs</td>
+                                <td>&gt;209 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>6'0" (183 cm)</td>
+                                <td>&lt;136 lbs</td>
+                                <td>136-184 lbs</td>
+                                <td>185-221 lbs</td>
+                                <td>&gt;221 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>6'2" (188 cm)</td>
+                                <td>&lt;144 lbs</td>
+                                <td>144-194 lbs</td>
+                                <td>195-234 lbs</td>
+                                <td>&gt;234 lbs</td>
+                            </tr>
+                            <tr>
+                                <td>6'4" (193 cm)</td>
+                                <td>&lt;152 lbs</td>
+                                <td>152-205 lbs</td>
+                                <td>206-246 lbs</td>
+                                <td>&gt;246 lbs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="age-considerations">
+                    <h3>Age Considerations</h3>
+                    <p>While BMI is useful for most adults 20 years old and over, there are some important age factors to consider:</p>
+                    
+                    <h4>Children and Teens (2-19 years):</h4>
+                    <p>BMI is calculated differently for children and teens. Age and gender-specific percentiles are used instead of the adult categories.</p>
+                    
+                    <h4>Adults (20-65 years):</h4>
+                    <p>Standard BMI categories apply. Many health professionals suggest maintaining a BMI between 18.5-24.9 for optimal health.</p>
+                    
+                    <h4>Older Adults (65+ years):</h4>
+                    <p>Some research suggests that for older adults, being slightly overweight (BMI between 25-27) may be protective and associated with better health outcomes.</p>
+                </div>
+                
+                <div class="bmi-calculator">
+                    <h3>Calculate Your BMI</h3>
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="calc-height">Height (ft)</label>
+                            <input type="number" id="calc-height" min="1" max="8" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="calc-weight">Weight (kg)</label>
+                            <input type="number" id="calc-weight" min="20" max="300" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="calc-age">Age</label>
+                            <input type="number" id="calc-age" min="1" max="120" required>
+                        </div>
+                        <button type="button" id="calc-bmi-btn" class="submit-btn">Calculate</button>
+                    </div>
+                    <div class="bmi-result" id="bmi-result">
+                        <p>Your BMI: <span id="bmi-value">-</span></p>
+                        <p>Category: <span id="bmi-category">-</span></p>
+                        <p>Recommendation: <span id="bmi-recommendation">-</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diet Plan Modal -->
+    <div id="diet-modal" class="modal">
+        <div class="modal-content diet-modal-content">
+            <span class="close" data-modal="diet-modal">&times;</span>
+            <h2>Weekly Diet Plans</h2>
+            
+            <div class="diet-tabs">
+                <button class="diet-tab-btn active" data-diet-tab="gain">Weight Gain</button>
+                <button class="diet-tab-btn" data-diet-tab="maintain">Weight Maintenance</button>
+                <button class="diet-tab-btn" data-diet-tab="loss">Weight Loss</button>
+            </div>
+            
+            <div class="diet-tab-content active" id="gain-tab">
+                <h3>Weight Gain Diet Plan</h3>
+                <p>Designed for individuals looking to gain weight in a healthy manner. High in protein and complex carbohydrates.</p>
+                
+                <div class="diet-plan-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="gain-veg-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label">Vegetarian</span>
+                </div>
+                
+                <div class="meal-days">
+                    <div class="meal-day">
+                        <h4>Day 1</h4>
+                        <div class="meal-plan non-vegetarian" id="gain-day1-non-veg">
+                            <div class="meal">
+                                <h5>Breakfast</h5>
+                                <ul>
+                                    <li>3 whole eggs scrambled with cheese</li>
+                                    <li>2 slices whole grain toast with avocado</li>
+                                    <li>1 cup Greek yogurt with honey</li>
+                                    <li>1 banana</li>
+                                    <li>Orange juice (250ml)</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Lunch</h5>
+                                <ul>
+                                    <li>Grilled chicken breast (200g)</li>
+                                    <li>Brown rice (1 cup)</li>
+                                    <li>Mixed vegetables sautéed in olive oil</li>
+                                    <li>Avocado salad with nuts</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Snack</h5>
+                                <ul>
+                                    <li>Protein shake with whole milk</li>
+                                    <li>1 apple with peanut butter</li>
+                                    <li>Trail mix (30g)</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Dinner</h5>
+                                <ul>
+                                    <li>Salmon fillet (200g)</li>
+                                    <li>Sweet potato (1 large)</li>
+                                    <li>Broccoli roasted with olive oil</li>
+                                    <li>Mixed green salad with olive oil dressing</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="meal-plan vegetarian hidden" id="gain-day1-veg">
+                            <div class="meal">
+                                <h5>Breakfast</h5>
+                                <ul>
+                                    <li>Protein pancakes (3-4) with maple syrup</li>
+                                    <li>Greek yogurt with nuts and honey</li>
+                                    <li>1 banana</li>
+                                    <li>Almond milk smoothie</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Lunch</h5>
+                                <ul>
+                                    <li>Lentil and vegetable curry</li>
+                                    <li>Brown rice (1 cup)</li>
+                                    <li>Paneer (Indian cottage cheese) 100g</li>
+                                    <li>Avocado salad with nuts</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Snack</h5>
+                                <ul>
+                                    <li>Plant-based protein shake</li>
+                                    <li>1 apple with almond butter</li>
+                                    <li>Trail mix with dried fruits (30g)</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Dinner</h5>
+                                <ul>
+                                    <li>Tofu stir-fry with vegetables (200g tofu)</li>
+                                    <li>Sweet potato (1 large)</li>
+                                    <li>Quinoa (1 cup)</li>
+                                    <li>Mixed green salad with olive oil dressing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="load-more-btn" data-plan="gain">Load More Days</button>
+            </div>
+            
+            <div class="diet-tab-content" id="maintain-tab">
+                <h3>Weight Maintenance Diet Plan</h3>
+                <p>Balanced nutrition plan designed to maintain your current weight while providing all essential nutrients.</p>
+                
+                <div class="diet-plan-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="maintain-veg-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label">Vegetarian</span>
+                </div>
+                
+                <div class="meal-days">
+                    <div class="meal-day">
+                        <h4>Day 1</h4>
+                        <div class="meal-plan non-vegetarian" id="maintain-day1-non-veg">
+                            <div class="meal">
+                                <h5>Breakfast</h5>
+                                <ul>
+                                    <li>2 whole eggs with vegetables</li>
+                                    <li>1 slice whole grain toast</li>
+                                    <li>1/2 avocado</li>
+                                    <li>1 cup berries</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Lunch</h5>
+                                <ul>
+                                    <li>Grilled chicken salad (150g chicken)</li>
+                                    <li>Mixed vegetables with light dressing</li>
+                                    <li>1 small whole grain roll</li>
+                                    <li>1 apple</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Snack</h5>
+                                <ul>
+                                    <li>Greek yogurt (150g)</li>
+                                    <li>1 small handful of almonds</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Dinner</h5>
+                                <ul>
+                                    <li>Baked fish (150g)</li>
+                                    <li>Steamed vegetables</li>
+                                    <li>Quinoa (1/2 cup)</li>
+                                    <li>Mixed green salad</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="meal-plan vegetarian hidden" id="maintain-day1-veg">
+                            <div class="meal">
+                                <h5>Breakfast</h5>
+                                <ul>
+                                    <li>Vegetable omelette (2 eggs)</li>
+                                    <li>1 slice whole grain toast</li>
+                                    <li>1/2 avocado</li>
+                                    <li>1 cup berries</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Lunch</h5>
+                                <ul>
+                                    <li>Quinoa bowl with chickpeas</li>
+                                    <li>Roasted vegetables</li>
+                                    <li>Tahini dressing</li>
+                                    <li>1 apple</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Snack</h5>
+                                <ul>
+                                    <li>Greek yogurt (150g)</li>
+                                    <li>1 small handful of walnuts</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Dinner</h5>
+                                <ul>
+                                    <li>Grilled tofu (150g)</li>
+                                    <li>Steamed vegetables</li>
+                                    <li>Brown rice (1/2 cup)</li>
+                                    <li>Mixed green salad</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="load-more-btn" data-plan="maintain">Load More Days</button>
+            </div>
+            
+            <div class="diet-tab-content" id="loss-tab">
+                <h3>Weight Loss Diet Plan</h3>
+                <p>Calorie-controlled diet focused on lean proteins, high fiber foods, and nutrient-dense vegetables to support healthy weight loss.</p>
+                
+                <div class="diet-plan-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="loss-veg-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label">Vegetarian</span>
+                </div>
+                
+                <div class="meal-days">
+                    <div class="meal-day">
+                        <h4>Day 1</h4>
+                        <div class="meal-plan non-vegetarian" id="loss-day1-non-veg">
+                            <div class="meal">
+                                <h5>Breakfast</h5>
+                                <ul>
+                                    <li>2 egg whites + 1 whole egg scrambled</li>
+                                    <li>1/2 cup oatmeal with berries</li>
+                                    <li>Green tea</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Lunch</h5>
+                                <ul>
+                                    <li>Grilled chicken breast (120g)</li>
+                                    <li>Large green salad with balsamic vinegar</li>
+                                    <li>1/2 cup quinoa</li>
+                                    <li>1 orange</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Snack</h5>
+                                <ul>
+                                    <li>Protein shake with water</li>
+                                    <li>Carrot sticks with hummus (2 tbsp)</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Dinner</h5>
+                                <ul>
+                                    <li>Baked white fish (120g)</li>
+                                    <li>Steamed broccoli and cauliflower</li>
+                                    <li>Small side salad</li>
+                                    <li>Herbal tea</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="meal-plan vegetarian hidden" id="loss-day1-veg">
+                            <div class="meal">
+                                <h5>Breakfast</h5>
+                                <ul>
+                                    <li>Tofu scramble with vegetables</li>
+                                    <li>1/2 cup oatmeal with berries</li>
+                                    <li>Green tea</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Lunch</h5>
+                                <ul>
+                                    <li>Lentil soup (1 cup)</li>
+                                    <li>Large green salad with balsamic vinegar</li>
+                                    <li>1/2 cup quinoa</li>
+                                    <li>1 orange</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Snack</h5>
+                                <ul>
+                                    <li>Plant-based protein shake</li>
+                                    <li>Carrot sticks with hummus (2 tbsp)</li>
+                                </ul>
+                            </div>
+                            <div class="meal">
+                                <h5>Dinner</h5>
+                                <ul>
+                                    <li>Grilled portobello mushrooms</li>
+                                    <li>Steamed broccoli and cauliflower</li>
+                                    <li>1/2 cup edamame</li>
+                                    <li>Herbal tea</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="load-more-btn" data-plan="loss">Load More Days</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise Plan Modal -->
+    <div id="exercise-modal" class="modal">
+        <div class="modal-content exercise-modal-content">
+            <span class="close" data-modal="exercise-modal">&times;</span>
+            <h2>Weekly Exercise Plans</h2>
+            
+            <div class="exercise-tabs">
+                <button class="exercise-tab-btn active" data-exercise-tab="bulking">Bulking</button>
+                <button class="exercise-tab-btn" data-exercise-tab="maintaining">Maintaining</button>
+                <button class="exercise-tab-btn" data-exercise-tab="cutting">Cutting</button>
+            </div>
+            
+            <div class="exercise-tab-content active" id="bulking-tab">
+                <h3>Bulking Exercise Plan</h3>
+                <p>Focus on heavy compound lifts with progressive overload to maximize muscle growth and strength gains.</p>
+                
+                <div class="workout-days">
+                    <div class="workout-day">
+                        <h4>Day 1: Chest & Triceps</h4>
+                        <div class="exercise-list">
+                            <div class="exercise">
+                                <h5>Barbell Bench Press</h5>
+                                <ul>
+                                    <li>4 sets of 6-8 reps</li>
+                                    <li>Focus on increasing weight progressively</li>
+                                    <li>Rest 2-3 minutes between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Incline Dumbbell Press</h5>
+                                <ul>
+                                    <li>3 sets of 8-10 reps</li>
+                                    <li>Focus on full range of motion</li>
+                                    <li>Rest 90 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Weighted Dips</h5>
+                                <ul>
+                                    <li>3 sets of 8-10 reps</li>
+                                    <li>Add weight if possible</li>
+                                    <li>Rest 90 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Skull Crushers</h5>
+                                <ul>
+                                    <li>3 sets of 10-12 reps</li>
+                                    <li>Focus on tricep contraction</li>
+                                    <li>Rest 60 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Cable Tricep Pushdowns</h5>
+                                <ul>
+                                    <li>3 sets of 12-15 reps</li>
+                                    <li>Focus on squeezing at bottom of movement</li>
+                                    <li>Rest 60 seconds between sets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workout-day">
+                        <h4>Day 2: Back & Biceps</h4>
+                        <div class="exercise-list">
+                            <div class="exercise">
+                                <h5>Deadlifts</h5>
+                                <ul>
+                                    <li>4 sets of 5-6 reps</li>
+                                    <li>Focus on proper form</li>
+                                    <li>Rest 3 minutes between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Weighted Pull-ups</h5>
+                                <ul>
+                                    <li>3 sets of 6-8 reps</li>
+                                    <li>Add weight if possible</li>
+                                    <li>Rest 2 minutes between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Barbell Rows</h5>
+                                <ul>
+                                    <li>3 sets of 8-10 reps</li>
+                                    <li>Focus on squeezing shoulder blades</li>
+                                    <li>Rest 90 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Barbell Curls</h5>
+                                <ul>
+                                    <li>3 sets of 8-10 reps</li>
+                                    <li>Avoid swinging</li>
+                                    <li>Rest 60 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Hammer Curls</h5>
+                                <ul>
+                                    <li>3 sets of 10-12 reps</li>
+                                    <li>Focus on forearm and bicep development</li>
+                                    <li>Rest 60 seconds between sets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="view-all-btn" data-plan="bulking">View Full Week</button>
+            </div>
+            
+            <div class="exercise-tab-content" id="maintaining-tab">
+                <h3>Maintenance Exercise Plan</h3>
+                <p>Balanced workout routine that combines strength training, muscle endurance, and moderate cardio to maintain current physique.</p>
+                
+                <div class="workout-days">
+                    <div class="workout-day">
+                        <h4>Day 1: Full Body Strength</h4>
+                        <div class="exercise-list">
+                            <div class="exercise">
+                                <h5>Squats</h5>
+                                <ul>
+                                    <li>3 sets of 8-10 reps</li>
+                                    <li>Moderate weight</li>
+                                    <li>Rest 90 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Bench Press</h5>
+                                <ul>
+                                    <li>3 sets of 8-10 reps</li>
+                                    <li>Moderate weight</li>
+                                    <li>Rest 90 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Bent-Over Rows</h5>
+                                <ul>
+                                    <li>3 sets of 8-10 reps</li>
+                                    <li>Moderate weight</li>
+                                    <li>Rest 90 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Overhead Press</h5>
+                                <ul>
+                                    <li>3 sets of 8-10 reps</li>
+                                    <li>Moderate weight</li>
+                                    <li>Rest 90 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>20-minute moderate cardio</h5>
+                                <ul>
+                                    <li>Cycling, jogging, or elliptical</li>
+                                    <li>Heart rate at 60-70% of max</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workout-day">
+                        <h4>Day 2: HIIT & Core</h4>
+                        <div class="exercise-list">
+                            <div class="exercise">
+                                <h5>HIIT Circuit (20 minutes)</h5>
+                                <ul>
+                                    <li>30 seconds work, 30 seconds rest</li>
+                                    <li>Exercises: Burpees, Mountain Climbers, Jumping Jacks, High Knees</li>
+                                    <li>5 rounds total</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Planks</h5>
+                                <ul>
+                                    <li>3 sets of 45-60 seconds</li>
+                                    <li>Rest 45 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Russian Twists</h5>
+                                <ul>
+                                    <li>3 sets of 20 reps (each side)</li>
+                                    <li>Use medicine ball or weight if possible</li>
+                                    <li>Rest 45 seconds between sets</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Hanging Leg Raises</h5>
+                                <ul>
+                                    <li>3 sets of 12-15 reps</li>
+                                    <li>Focus on controlled movement</li>
+                                    <li>Rest 60 seconds between sets</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="view-all-btn" data-plan="maintaining">View Full Week</button>
+            </div>
+            
+            <div class="exercise-tab-content" id="cutting-tab">
+                <h3>Cutting Exercise Plan</h3>
+                <p>High-intensity workouts that combine resistance training with cardiovascular elements to maximize fat loss while preserving muscle mass.</p>
+                
+                <div class="workout-days">
+                    <div class="workout-day">
+                        <h4>Day 1: Upper Body & HIIT</h4>
+                        <div class="exercise-list">
+                            <div class="exercise">
+                                <h5>Circuit Training (minimal rest between exercises)</h5>
+                                <ul>
+                                    <li>Push-ups: 3 sets of 15-20 reps</li>
+                                    <li>Pull-ups or Lat Pulldowns: 3 sets of 10-12 reps</li>
+                                    <li>Dumbbell Shoulder Press: 3 sets of 12-15 reps</li>
+                                    <li>Tricep Dips: 3 sets of 12-15 reps</li>
+                                    <li>Rest 60 seconds between circuits, 3 rounds total</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>HIIT Cardio</h5>
+                                <ul>
+                                    <li>20 seconds sprint, 40 seconds walk/jog</li>
+                                    <li>10 rounds (10 minutes total)</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Core Finisher</h5>
+                                <ul>
+                                    <li>Mountain Climbers: 3 sets of 30 seconds</li>
+                                    <li>Plank: 3 sets of 45 seconds</li>
+                                    <li>Rest 30 seconds between exercises</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workout-day">
+                        <h4>Day 2: Lower Body & Cardio</h4>
+                        <div class="exercise-list">
+                            <div class="exercise">
+                                <h5>Circuit Training (minimal rest between exercises)</h5>
+                                <ul>
+                                    <li>Goblet Squats: 3 sets of 15-20 reps</li>
+                                    <li>Walking Lunges: 3 sets of 12 steps each leg</li>
+                                    <li>Romanian Deadlifts: 3 sets of 12-15 reps</li>
+                                    <li>Calf Raises: 3 sets of 20 reps</li>
+                                    <li>Rest 60 seconds between circuits, 3 rounds total</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Steady State Cardio</h5>
+                                <ul>
+                                    <li>30 minutes at moderate intensity</li>
+                                    <li>Heart rate at 65-75% of max</li>
+                                    <li>Options: jogging, cycling, stair master, elliptical</li>
+                                </ul>
+                            </div>
+                            <div class="exercise">
+                                <h5>Core Finisher</h5>
+                                <ul>
+                                    <li>Bicycle Crunches: 3 sets of 20 reps (each side)</li>
+                                    <li>Russian Twists: 3 sets of 20 reps (each side)</li>
+                                    <li>Rest 30 seconds between exercises</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="view-all-btn" data-plan="cutting">View Full Week</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Tracking Modal -->
+    <div id="progress-modal" class="modal">
+        <div class="modal-content progress-modal-content">
+            <span class="close" data-modal="progress-modal">&times;</span>
+            <h2>Progress Tracking Dashboard</h2>
+            
+            <div class="progress-tabs">
+                <button class="progress-tab-btn active" data-progress-tab="workout">Workout Tracking</button>
+                <button class="progress-tab-btn" data-progress-tab="nutrition">Nutrition Tracking</button>
+                <button class="progress-tab-btn" data-progress-tab="metrics">Body Metrics</button>
+                <button class="progress-tab-btn" data-progress-tab="charts">Progress Charts</button>
+                <button class="progress-tab-btn" data-progress-tab="goals">Goal Setting</button>
+            </div>
+            
+            <!-- Workout Tracking Tab -->
+            <div class="progress-tab-content active" id="workout-tab">
+                <h3>Workout Tracking</h3>
+                <p>Keep detailed logs of your workouts to monitor your training progress over time.</p>
+                
+                <div class="tracking-section">
+                    <div class="section-header">
+                        <h4>Exercise Log</h4>
+                        <button class="add-entry-btn" data-form="workout-form"><i class="fas fa-plus"></i> Add Workout</button>
+                    </div>
+                    
+                    <!-- Workout Form -->
+                    <div class="tracking-form" id="workout-form">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="workout-date">Date</label>
+                                    <input type="date" id="workout-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="workout-type">Workout Type</label>
+                                    <select id="workout-type" required>
+                                        <option value="">Select</option>
+                                        <option value="strength">Strength Training</option>
+                                        <option value="cardio">Cardio</option>
+                                        <option value="hiit">HIIT</option>
+                                        <option value="yoga">Yoga/Flexibility</option>
+                                        <option value="sports">Sports/Recreation</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="workout-duration">Duration (minutes)</label>
+                                    <input type="number" id="workout-duration" min="1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="workout-intensity">Intensity</label>
+                                    <select id="workout-intensity" required>
+                                        <option value="">Select</option>
+                                        <option value="low">Low</option>
+                                        <option value="moderate">Moderate</option>
+                                        <option value="high">High</option>
+                                        <option value="very-high">Very High</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="workout-notes">Notes (exercises, sets, reps, weights)</label>
+                                <textarea id="workout-notes" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="submit-btn">Save Workout</button>
+                                <button type="button" class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Recent Workouts -->
+                    <div class="data-display">
+                        <h5>Recent Workouts</h5>
+                        <div class="data-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th>Duration</th>
+                                        <th>Intensity</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="workout-log">
+                                    <tr>
+                                        <td colspan="5" class="empty-data">No workout data recorded. Add your first workout!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Workout Frequency Stats -->
+                    <div class="stats-display">
+                        <h5>Workout Frequency</h5>
+                        <div class="stats-cards">
+                            <div class="stat-box">
+                                <h6>This Week</h6>
+                                <p class="stat-value" id="workouts-this-week">0</p>
+                                <p class="stat-label">workouts</p>
+                            </div>
+                            <div class="stat-box">
+                                <h6>This Month</h6>
+                                <p class="stat-value" id="workouts-this-month">0</p>
+                                <p class="stat-label">workouts</p>
+                            </div>
+                            <div class="stat-box">
+                                <h6>Consistency</h6>
+                                <p class="stat-value" id="workout-consistency">0%</p>
+                                <p class="stat-label">of goal</p>
+                            </div>
+                            <div class="stat-box">
+                                <h6>Weekly Goal</h6>
+                                <p class="stat-value">4</p>
+                                <p class="stat-label">workouts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Nutrition Tracking Tab -->
+            <div class="progress-tab-content" id="nutrition-tab">
+                <h3>Nutrition Tracking</h3>
+                <p>Monitor your food intake, macronutrients, and plan meals to support your fitness goals.</p>
+                
+                <div class="tracking-section">
+                    <div class="section-header">
+                        <h4>Food Diary</h4>
+                        <button class="add-entry-btn" data-form="meal-form"><i class="fas fa-plus"></i> Add Meal</button>
+                    </div>
+                    
+                    <!-- Meal Form -->
+                    <div class="tracking-form" id="meal-form">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="meal-date">Date</label>
+                                    <input type="date" id="meal-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="meal-type">Meal Type</label>
+                                    <select id="meal-type" required>
+                                        <option value="">Select</option>
+                                        <option value="breakfast">Breakfast</option>
+                                        <option value="lunch">Lunch</option>
+                                        <option value="dinner">Dinner</option>
+                                        <option value="snack">Snack</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="meal-calories">Calories</label>
+                                    <input type="number" id="meal-calories" min="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="meal-protein">Protein (g)</label>
+                                    <input type="number" id="meal-protein" min="0" step="0.1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="meal-carbs">Carbs (g)</label>
+                                    <input type="number" id="meal-carbs" min="0" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="meal-fat">Fat (g)</label>
+                                    <input type="number" id="meal-fat" min="0" step="0.1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="meal-description">Description</label>
+                                <textarea id="meal-description" rows="2"></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="submit-btn">Save Meal</button>
+                                <button type="button" class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Recent Meals -->
+                    <div class="data-display">
+                        <h5>Recent Meals</h5>
+                        <div class="data-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Meal</th>
+                                        <th>Description</th>
+                                        <th>Calories</th>
+                                        <th>Macros (P/C/F)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="meal-log">
+                                    <tr>
+                                        <td colspan="5" class="empty-data">No meal data recorded. Add your first meal!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Water Intake Tracker -->
+                    <div class="water-tracker">
+                        <h5>Water Intake Tracker</h5>
+                        <div class="water-container">
+                            <div class="water-progress-container">
+                                <div class="water-progress" id="water-progress" style="height: 0%"></div>
+                                <div class="water-level-labels">
+                                    <span>2L</span>
+                                    <span>1.5L</span>
+                                    <span>1L</span>
+                                    <span>0.5L</span>
+                                </div>
+                            </div>
+                            <div class="water-controls">
+                                <p><span id="water-amount">0</span> / 2.0 L</p>
+                                <button id="add-water-btn">Add 250ml</button>
+                                <button id="reset-water-btn">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Nutrition Summary -->
+                    <div class="nutrition-summary">
+                        <h5>Today's Nutrition Summary</h5>
+                        <div class="macros-display">
+                            <div class="macro-chart-container">
+                                <canvas id="macro-chart"></canvas>
+                            </div>
+                            <div class="calories-summary">
+                                <div class="calorie-box">
+                                    <h6>Calories</h6>
+                                    <p class="calorie-value" id="total-calories">0</p>
+                                    <p class="calorie-goal">of 2,000 goal</p>
+                                </div>
+                                <div class="macro-boxes">
+                                    <div class="macro-box protein">
+                                        <h6>Protein</h6>
+                                        <p><span id="total-protein">0</span>g</p>
+                                    </div>
+                                    <div class="macro-box carbs">
+                                        <h6>Carbs</h6>
+                                        <p><span id="total-carbs">0</span>g</p>
+                                    </div>
+                                    <div class="macro-box fat">
+                                        <h6>Fat</h6>
+                                        <p><span id="total-fat">0</span>g</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Body Metrics Tab -->
+            <div class="progress-tab-content" id="metrics-tab">
+                <h3>Body Metrics Tracking</h3>
+                <p>Monitor changes in your weight, body composition, and measurements to track physical progress.</p>
+                
+                <div class="tracking-section">
+                    <div class="section-header">
+                        <h4>Body Measurements</h4>
+                        <button class="add-entry-btn" data-form="metrics-form"><i class="fas fa-plus"></i> Add Measurements</button>
+                    </div>
+                    
+                    <!-- Metrics Form -->
+                    <div class="tracking-form" id="metrics-form">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="metrics-date">Date</label>
+                                    <input type="date" id="metrics-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="metrics-weight">Weight (kg)</label>
+                                    <input type="number" id="metrics-weight" min="30" max="300" step="0.1" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="metrics-body-fat">Body Fat %</label>
+                                    <input type="number" id="metrics-body-fat" min="3" max="50" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="metrics-muscle-mass">Muscle Mass (kg)</label>
+                                    <input type="number" id="metrics-muscle-mass" min="10" max="100" step="0.1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="metrics-waist">Waist (cm)</label>
+                                    <input type="number" id="metrics-waist" min="50" max="200" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="metrics-hips">Hips (cm)</label>
+                                    <input type="number" id="metrics-hips" min="50" max="200" step="0.1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="metrics-chest">Chest (cm)</label>
+                                    <input type="number" id="metrics-chest" min="50" max="200" step="0.1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="metrics-arms">Arms (cm)</label>
+                                    <input type="number" id="metrics-arms" min="20" max="60" step="0.1">
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="submit-btn">Save Measurements</button>
+                                <button type="button" class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Metrics History -->
+                    <div class="data-display">
+                        <h5>Measurement History</h5>
+                        <div class="data-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Weight</th>
+                                        <th>Body Fat %</th>
+                                        <th>Waist</th>
+                                        <th>Hips</th>
+                                        <th>Chest</th>
+                                        <th>Arms</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="metrics-log">
+                                    <tr>
+                                        <td colspan="7" class="empty-data">No measurement data recorded. Add your first entry!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Summary -->
+                    <div class="progress-summary">
+                        <h5>Progress Summary</h5>
+                        <div class="progress-cards">
+                            <div class="progress-card">
+                                <h6>Weight Change</h6>
+                                <p class="progress-value" id="weight-change">0 kg</p>
+                                <p class="timeframe">Last 30 days</p>
+                            </div>
+                            <div class="progress-card">
+                                <h6>Body Fat Change</h6>
+                                <p class="progress-value" id="fat-change">0%</p>
+                                <p class="timeframe">Last 30 days</p>
+                            </div>
+                            <div class="progress-card">
+                                <h6>Waist Change</h6>
+                                <p class="progress-value" id="waist-change">0 cm</p>
+                                <p class="timeframe">Last 30 days</p>
+                            </div>
+                            <div class="progress-card">
+                                <h6>Current BMI</h6>
+                                <p class="progress-value" id="current-bmi">0</p>
+                                <p class="bmi-category" id="bmi-category-display">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Charts Tab -->
+            <div class="progress-tab-content" id="charts-tab">
+                <h3>Progress Charts & Analysis</h3>
+                <p>Visualize your progress over time with interactive charts and gain insights into your fitness journey.</p>
+                
+                <div class="charts-container">
+                    <!-- Weight Chart -->
+                    <div class="chart-box">
+                        <div class="chart-header">
+                            <h4>Weight Progression</h4>
+                            <div class="chart-controls">
+                                <button class="time-filter active" data-period="30">30 Days</button>
+                                <button class="time-filter" data-period="90">90 Days</button>
+                                <button class="time-filter" data-period="365">1 Year</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="weight-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Body Composition Chart -->
+                    <div class="chart-box">
+                        <div class="chart-header">
+                            <h4>Body Composition</h4>
+                            <div class="chart-controls">
+                                <button class="time-filter active" data-period="30">30 Days</button>
+                                <button class="time-filter" data-period="90">90 Days</button>
+                                <button class="time-filter" data-period="365">1 Year</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="body-composition-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Workout Activity Chart -->
+                    <div class="chart-box">
+                        <div class="chart-header">
+                            <h4>Workout Activity</h4>
+                            <div class="chart-controls">
+                                <button class="time-filter active" data-period="30">30 Days</button>
+                                <button class="time-filter" data-period="90">90 Days</button>
+                                <button class="time-filter" data-period="365">1 Year</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="workout-chart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Calorie Intake Chart -->
+                    <div class="chart-box">
+                        <div class="chart-header">
+                            <h4>Calorie Intake</h4>
+                            <div class="chart-controls">
+                                <button class="time-filter active" data-period="7">7 Days</button>
+                                <button class="time-filter" data-period="30">30 Days</button>
+                                <button class="time-filter" data-period="90">90 Days</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="calorie-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insights-container">
+                    <h4>Insights & Recommendations</h4>
+                    <div class="insights-cards">
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Workout Consistency</h5>
+                                <p id="workout-insight">Start logging your workouts to receive insights about your training consistency.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Nutrition Patterns</h5>
+                                <p id="nutrition-insight">Log your meals to receive insights about your nutrition patterns and recommendations.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">
+                                <i class="fas fa-weight"></i>
+                            </div>
+                            <div class="insight-content">
+                                <h5>Body Composition</h5>
+                                <p id="body-insight">Track your body metrics to receive insights about your progress and areas to focus on.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Goal Setting Tab -->
+            <div class="progress-tab-content" id="goals-tab">
+                <h3>Goal Setting & Reminders</h3>
+                <p>Set specific, measurable goals for your fitness journey and create reminders to stay on track.</p>
+                
+                <div class="tracking-section">
+                    <div class="section-header">
+                        <h4>My Fitness Goals</h4>
+                        <button class="add-entry-btn" data-form="goal-form"><i class="fas fa-plus"></i> Add New Goal</button>
+                    </div>
+                    
+                    <!-- Goal Form -->
+                    <div class="tracking-form" id="goal-form">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="goal-title">Goal Title</label>
+                                    <input type="text" id="goal-title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="goal-category">Category</label>
+                                    <select id="goal-category" required>
+                                        <option value="">Select</option>
+                                        <option value="weight">Weight Management</option>
+                                        <option value="strength">Strength & Muscle</option>
+                                        <option value="cardio">Cardio & Endurance</option>
+                                        <option value="nutrition">Nutrition</option>
+                                        <option value="habit">Habit Formation</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="goal-target">Target Value</label>
+                                    <input type="text" id="goal-target" placeholder="e.g., 70kg, 10% body fat, 5 workouts/week">
+                                </div>
+                                <div class="form-group">
+                                    <label for="goal-deadline">Target Date</label>
+                                    <input type="date" id="goal-deadline">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="goal-details">Goal Details</label>
+                                <textarea id="goal-details" rows="2" placeholder="Add more details about your goal..."></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="submit-btn">Save Goal</button>
+                                <button type="button" class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Current Goals -->
+                    <div class="goals-container">
+                        <div class="goal-cards" id="goal-list">
+                            <div class="empty-goals-message">
+                                <i class="fas fa-bullseye"></i>
+                                <p>No goals have been set yet. Create your first fitness goal!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reminder Settings -->
+                    <div class="reminders-section">
+                        <h4>Reminders</h4>
+                        <div class="reminder-settings">
+                            <div class="reminder-group">
+                                <h5>Workout Reminders</h5>
+                                <div class="toggle-group">
+                                    <label class="toggle">
+                                        <input type="checkbox" id="workout-reminder-toggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <span>Enable workout reminders</span>
+                                </div>
+                                <div class="reminder-days">
+                                    <button class="day-btn" data-day="mon">Mon</button>
+                                    <button class="day-btn" data-day="tue">Tue</button>
+                                    <button class="day-btn" data-day="wed">Wed</button>
+                                    <button class="day-btn" data-day="thu">Thu</button>
+                                    <button class="day-btn" data-day="fri">Fri</button>
+                                    <button class="day-btn" data-day="sat">Sat</button>
+                                    <button class="day-btn" data-day="sun">Sun</button>
+                                </div>
+                                <div class="time-select">
+                                    <label for="workout-reminder-time">Reminder time:</label>
+                                    <input type="time" id="workout-reminder-time" value="18:00">
+                                </div>
+                            </div>
+                            
+                            <div class="reminder-group">
+                                <h5>Meal Planning Reminders</h5>
+                                <div class="toggle-group">
+                                    <label class="toggle">
+                                        <input type="checkbox" id="meal-reminder-toggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <span>Enable meal planning reminders</span>
+                                </div>
+                                <div class="reminder-days">
+                                    <button class="day-btn" data-day="sun">Sun</button>
+                                </div>
+                                <div class="time-select">
+                                    <label for="meal-reminder-time">Reminder time:</label>
+                                    <input type="time" id="meal-reminder-time" value="20:00">
+                                </div>
+                            </div>
+                            
+                            <div class="reminder-group">
+                                <h5>Progress Tracking Reminders</h5>
+                                <div class="toggle-group">
+                                    <label class="toggle">
+                                        <input type="checkbox" id="progress-reminder-toggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <span>Enable weekly progress check-in</span>
+                                </div>
+                                <div class="reminder-days">
+                                    <button class="day-btn" data-day="mon">Mon</button>
+                                </div>
+                                <div class="time-select">
+                                    <label for="progress-reminder-time">Reminder time:</label>
+                                    <input type="time" id="progress-reminder-time" value="09:00">
+                                </div>
+                            </div>
+                            
+                            <button class="save-reminders-btn">Save Reminder Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
